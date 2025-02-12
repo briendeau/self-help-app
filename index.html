@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Improvement App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <div class="container">
+        <h1>Life Improvement App</h1>
+        <ul>
+          <li><a href="#intro">Intro</a></li>
+          <li><a href="#life-vision">Life Vision</a></li>
+          <li><a href="#microtasks">Microtasks</a></li>
+          <li><a href="#life-factors">Life Factors</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Intro Section -->
+      <section id="intro" class="container">
+        <h2>Welcome to the Life Improvement App</h2>
+        <p>
+          This complete self-improvement app is designed to help you structure your life for success,
+          inspired by the world's best psychologists and self-help teachers, such as Jordan Peterson and Hamza Ahmed.
+          Below, you'll find tools to set goals, track progress, and align your
+          daily actions with your long-term vision.
+        </p>
+        <h3>Key Concepts to Understand</h3>
+        <p>
+          <strong>Dopamine is Motivation:</strong> Dopamine is the brain's
+          reward chemical, and it drives motivation and focus. However, dopamine
+          is a limited resource. You must manage it wisely by prioritizing tasks
+          that align with your goals and avoiding distractions.
+          <img src="dopa.png" width="200px" alt="">
+        </p>
+        <p>
+          Key points about dopamine levels throughout the day: Morning peak:
+          Dopamine is usually highest when you first wake up, contributing to
+          alertness and motivation. Circadian rhythm: This natural fluctuation
+          in dopamine levels is regulated by your body's circadian rhythm.
+          Evening decline: As the day progresses, dopamine levels gradually
+          decrease, making it easier to wind down and prepare for sleep.
+          <img src="unnamed.png" width="200px" alt="">
+        <p>
+          <p>We want
+            to utilize our maximum dopamine levels to do meaningful work when we
+            are fully rested to make our best progress.</p> 
+        </p>
+          <strong>Beneficial Tasks Cause Pain Initially:</strong> Many tasks
+          that are good for you (e.g., exercising, learning a new skill) feel
+          painful or boring at first. However, if you push through the initial
+          discomfort, you'll experience a dopamine burst as you make progress.
+          Over time, these tasks become self-rewarding as you build skills and
+          see results.
+        </p>
+        <p>
+          <strong>Skills Are Self-Rewarding:</strong> The better you get at
+          something, the more rewarding it becomes. This is because your brain
+          releases dopamine when you achieve mastery, unlocking your creative potential and being a producer. Focus on building skills
+          that align with your goals, and you'll find motivation naturally
+          follows.
+        </p>
+      </section>
+
+      <!-- Form for All Input Sections -->
+      <form id="lifeForm">
+        <!-- Life Vision Section -->
+        <section id="life-vision" class="container">
+          <h2>1. What Would You Like Your Life to Be Like? (If you could have everything you wanted)</h2>
+          <textarea
+            id="lifeVisionText"
+            name="lifeVision"
+            rows="6"
+            placeholder="Write at least 2 paragraphs..."
+            required
+          ></textarea>
+        </section>
+
+        <!-- Avoidance Vision Section -->
+        <section id="avoidance-vision" class="container">
+          <h2>2. What Do You Want to Avoid in Life? (What would your version of hell look like?)</h2>
+          <textarea
+            id="avoidanceVisionText"
+            name="avoidanceVision"
+            rows="6"
+            placeholder="Write at least 2 paragraphs..."
+            required
+          ></textarea>
+        </section>
+
+        <!-- Personality Traits Section -->
+        <section id="personality-traits" class="container">
+          <h2>3. Identify Your Core Big 5 Personality Traits</h2>
+          <p>Rate yourself on the following traits (1-10):</p>
+          <div id="traits">
+            <label for="openness">Openness:</label>
+            <input
+              type="number"
+              id="openness"
+              name="openness"
+              min="1"
+              max="10"
+              required
+            />
+            <!-- Repeat for Conscientiousness, Extraversion, Agreeableness, Neuroticism -->
+          </div>
+        </section>
+
+        <!-- Life Factors Ranking Section -->
+        <section id="life-factors" class="container">
+          <h2>4. Rank Your Life Factors (1-10)</h2>
+          <div id="factors">
+            <label for="romantic">Romantic Relationship:</label>
+            <input
+              type="number"
+              id="romantic"
+              name="romantic"
+              min="1"
+              max="10"
+              required
+            />
+            <label for="wealth">Wealth/Money:</label>
+            <input
+              type="number"
+              id="wealth"
+              name="wealth"
+              min="1"
+              max="10"
+              required
+            />
+            <label for="health">Health:</label>
+            <input
+              type="number"
+              id="health"
+              name="health"
+              min="1"
+              max="10"
+              required
+            />
+            <label for="career">Career:</label>
+            <input
+              type="number"
+              id="career"
+              name="career"
+              min="1"
+              max="10"
+              required
+            />
+            <label for="family">Family/Friends:</label>
+            <input
+              type="number"
+              id="family"
+              name="family"
+              min="1"
+              max="10"
+              required
+            />
+            <label for="spiritual">Spiritual/Personal Relationship:</label>
+            <input
+              type="number"
+              id="spiritual"
+              name="spiritual"
+              min="1"
+              max="10"
+              required
+            />
+          </div>
+          <canvas id="lifeChart"></canvas>
+        </section>
+
+        <!-- Microtasks Section -->
+        <section id="microtasks" class="container">
+          <h2>6. Plan Your Daily Microtasks (Tasks moving you toward your long-term goals)</h2>
+          <input type="text" id="taskInput" placeholder="Add a new microtask" />
+          <button type="button" id="addTask">Add Task</button>
+          <ul id="taskList"></ul>
+        </section>
+
+        <!-- Generate Document Button -->
+        <div class="container">
+          <button type="button" id="generateDocument">Generate Document</button>
+        </div>
+      </form>
+
+      <!-- Document Preview Section -->
+      <section id="documentPreview" class="container" style="display: none">
+        <h2>Your Life Improvement Plan</h2>
+        <div id="documentContent"></div>
+        <button id="downloadPDF">Download as PDF</button>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 Life Improvement App. Pure Athena Media. All rights reserved.</p>
+        <p>Designed with ❤️ by Brian Riendeau</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
